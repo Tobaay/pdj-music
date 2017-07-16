@@ -66,7 +66,7 @@ public class LoginBean {
             // invalidate session, and redirect to other pages
  
             //message = "Invalid Login. Please Try Again!";
-            return "login";
+            return "template";
         }
     }
  
@@ -74,6 +74,6 @@ public class LoginBean {
       HttpSession session = SessionUtil.getSession();
       userBean.setUser(null);
       session.invalidate();
-      return "login";
+      return "template";
    }
 }

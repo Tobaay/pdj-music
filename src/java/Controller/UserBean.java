@@ -34,6 +34,6 @@ public class UserBean implements Serializable{
       HttpSession session = SessionUtil.getSession();
       user = null;
       session.invalidate();
-      return "login";
+      return "template";
    }
 }

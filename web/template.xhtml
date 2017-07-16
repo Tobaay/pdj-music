@@ -6,6 +6,8 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>PDJ-PROJECT-DEV</title>
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
     </h:head>
     <h:body>           
         <div id="top" class="top">
@@ -22,14 +24,20 @@
                 <ui:insert name="left">
                     <h:form id="navi">
                         <h:panelGrid columns="1">
+                            <h:commandButton value="Home" 
+                                             action="home" 
+                                             rendered="#{userBean.loggedIn}"/>
+                            <h:commandButton value="Home" 
+                                             action="template" 
+                                             rendered="#{!userBean.loggedIn}"/>
                             <h:commandButton value="Content" 
                                              action="page1" 
                                              rendered="#{userBean.loggedIn}"/>
                             <h:commandButton value="User Settings" 
                                              action="usersettings" 
                                              rendered="#{userBean.loggedIn}"/>
-                            <h:commandButton value="Home" 
-                                             action="template" />
+                            <h:commandButton value="Logout" action="#{userBean.logout}" 
+                                             rendered="#{userBean.loggedIn}"/>
                         </h:panelGrid>
                     </h:form>
                 </ui:insert>
