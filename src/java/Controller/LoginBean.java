@@ -1,4 +1,4 @@
-package Login;
+package Controller;
 
 import Database.DAO;
 import Session.SessionUtil;
@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import model.User;
 
 
 @Named(value="loginBean")
@@ -16,6 +17,9 @@ public class LoginBean {
     
     private String username;
     private String password;
+    
+    @Inject
+  private UserBean userBean;
     
     @Inject 
     private DAO dao;
@@ -42,11 +46,13 @@ public class LoginBean {
     }
     
     public String login() {
-        boolean result = dao.login(username, password);
-        if (result) {
+        User result = dao.login(username, password);
+        
+        if (result != null) {
             // get Http Session and store username
             HttpSession session = SessionUtil.getSession();
             session.setAttribute("username", username);
+            userBean.setUser(result);
  
             return "home";
         } else {
@@ -66,6 +72,7 @@ public class LoginBean {
  
     public String logout() {
       HttpSession session = SessionUtil.getSession();
+      userBean.setUser(null);
       session.invalidate();
       return "login";
    }

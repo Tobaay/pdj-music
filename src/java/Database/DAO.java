@@ -1,6 +1,8 @@
 
 package Database;
 
+import model.User;
+
 public interface DAO {
-    public boolean login(String username, String password);
+    public User login(String username, String password);
 }
