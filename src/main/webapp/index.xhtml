@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>home</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <ui:composition template="./template.xhtml">
+
+                <ui:define name="content">
+                    <h2>Herzlich Willkommen auf der Startseite!</h2>
+
+                    <p:growl />
+                    <h:form id="loginForm">   
+                        <h:panelGrid columns="2" rendered="#{!userBean.loggedIn}">
+                            <h:outputLabel for="username" value="Username:" />
+                            <h:inputText id="username" value="#{loginBean.username}"/>
+                            <h:outputLabel for="password" value="Password:" />
+                            <h:inputSecret id="password" value="#{loginBean.password}"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Login" 
+                                         action="#{loginBean.login()}" 
+                                         rendered="#{!userBean.loggedIn}"/>
+                        <h:commandButton value="Registrieren" 
+                                         action="registPage" 
+                                         rendered="#{!userBean.loggedIn}"/>
+                        <h:commandButton value="Logout" action="#{userBean.logout}" 
+                                         rendered="#{userBean.loggedIn}"/>
+
+                    </h:form>
+                </ui:define>
+
+            </ui:composition>
+
+        </h:body>
+
+    </f:view>
+</html>
