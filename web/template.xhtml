@@ -3,77 +3,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>PDJ-PROJECT-DEV</title>
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
     </h:head>
-    <h:body>
-        <div id="wrapper">
-            <div id="top" class="top">
-                <ui:insert name="top">
-                    <h:form>
-                        <h1>PDJ-PROJECT-DEVELOPMENT ENVIRONMENT</h1>
-                        <h:outputText value="Logged in as #{userBean.user.userMail}"
-                                      rendered="#{userBean.loggedIn}" />
-                        <h:outputText value="Not logged in"
-                                      rendered="#{!userBean.loggedIn}" />
-
-                        <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
-                        <p:megaMenu autoDisplay="false" id="menu" style="margin-top:20px">
-                            <p:menuitem value="Home" 
-                                        url="index.xhtml" 
-                                        icon="fa fa-home" />
-
-                            <p:menuitem value="Settings" 
-                                        action="usersettings" 
-                                        rendered="#{userBean.loggedIn}"/>
-
-                            <p:menuitem  value="Login" 
-                                         onclick="PF('dlg').show();"
-                                         rendered="#{!userBean.loggedIn}"
-                                         url="index.xhtml" 
-                                         icon="fa fa-sign-in"/>
-
-
-                            <p:menuitem value="Logout" 
-                                        action="#{userBean.logout}" 
-                                        rendered="#{userBean.loggedIn}"
-                                        url="index.xhtml" 
-                                        icon="ui-icon-sign-out" />
-                        </p:megaMenu>
-
-
-                        <p:dialog header="Login" widgetVar="dlg" resizable="false">
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <h:outputLabel for="username" value="Username:" />
-                                <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" />
-
-                                <h:outputLabel for="password" value="Password:" />
-                                <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
-
-                                <f:facet name="footer">
-                                    <p:commandButton value="Login" update="growl" actionListener="#{loginBean.login()}"
-                                                     oncomplete="handleLoginRequest(xhr, status, args)" />
-                                </f:facet>  
-                            </h:panelGrid>
-                        </p:dialog>
-
+    <h:body>           
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <h1>PDJ-PROJECT-DEVELOPMENT ENVIRONMENT</h1>
+                <h:outputText value="Logged in as #{userBean.user.userMail}"
+                              rendered="#{userBean.loggedIn}" />
+                <h:outputText value="Not logged in"
+                              rendered="#{!userBean.loggedIn}" />
+            </ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <h:form id="navi">
+                        <h:panelGrid columns="1">
+                            <h:commandButton value="Home" 
+                                             action="home" 
+                                             rendered="#{userBean.loggedIn}"/>
+                            <h:commandButton value="Home" 
+                                             action="template" 
+                                             rendered="#{!userBean.loggedIn}"/>
+                            <h:commandButton value="Content" 
+                                             action="page1" 
+                                             rendered="#{userBean.loggedIn}"/>
+                            <h:commandButton value="User Settings" 
+                                             action="usersettings" 
+                                             rendered="#{userBean.loggedIn}"/>
+                            <h:commandButton value="Logout" action="#{userBean.logout}" 
+                                             rendered="#{userBean.loggedIn}"/>
+                        </h:panelGrid>
                     </h:form>
-                    <script type="text/javascript">
-                        function handleLoginRequest(xhr, status, args) {
-                            if (args.validationFailed || !args.loggedIn) {
-                                PF('dlg').jq.effect("shake", {times: 5}, 100);
-                            } else {
-                                PF('dlg').hide();
-                                $('#loginLink').fadeOut();
-                            }
-                        }
-                    </script>
-
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">
+                    <p:growl />
+                    <h:form id="loginForm">   
+                        <h:panelGrid columns="2" rendered="#{!userBean.loggedIn}">
+                            <h:outputLabel for="username" value="Username:" />
+                            <h:inputText id="username" value="#{loginBean.username}"/>
+                            <h:outputLabel for="password" value="Password:" />
+                            <h:inputSecret id="password" value="#{loginBean.password}"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Login" 
+                                         action="#{loginBean.login()}" 
+                                         rendered="#{!userBean.loggedIn}"/>
+                        <h:commandButton value="Registrieren" 
+                                         action="registPage" 
+                                         rendered="#{!userBean.loggedIn}"/>
+                        <h:commandButton value="Logout" action="#{userBean.logout}" 
+                                         rendered="#{userBean.loggedIn}"/>
+                    </h:form>
                 </ui:insert>
             </div>
         </div>

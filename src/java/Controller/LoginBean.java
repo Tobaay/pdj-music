@@ -54,7 +54,7 @@ public class LoginBean {
             session.setAttribute("username", username);
             userBean.setUser(result);
  
-            return "index";
+            return "home";
         } else {
  
             FacesContext.getCurrentInstance().addMessage(
@@ -74,6 +74,6 @@ public class LoginBean {
       HttpSession session = SessionUtil.getSession();
       userBean.setUser(null);
       session.invalidate();
-      return "index";
+      return "template";
    }
 }
