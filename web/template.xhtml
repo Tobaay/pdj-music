@@ -44,13 +44,11 @@
                                         <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
 
                                         <p:commandButton value="Login" update="growl" action="#{loginBean.login()}"
-                                                         oncomplete="handleLoginRequest(xhr, status, args)"/>
+                                                         oncomplete="handleLoginRequest(xhr, status, args)" ajax="false"/>
                                     </h:panelGrid>
                                 </p:overlayPanel>
 
                             </f:facet>
-
-
 
                             <p:menuitem id="logout"
                                         value="Logout" 
@@ -74,9 +72,6 @@
                     </script>
                 </ui:insert>
             </div>
-
-
-
         </div>
     </h:body>
 </html>
