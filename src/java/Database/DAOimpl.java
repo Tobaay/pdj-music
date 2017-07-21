@@ -1,10 +1,10 @@
-package syntaxfreaks.pdj.music.Database;
+package Database;
 
 import java.util.List;
 import javax.enterprise.context.Dependent;
+import model.User;
 import org.hibernate.Session;
-import syntaxfreaks.pdj.music.Util.NewHibernateUtil;
-import syntaxfreaks.pdj.music.model.User;
+import util.NewHibernateUtil;
 
 @Dependent
 public class DAOimpl implements DAO {

@@ -1,15 +1,14 @@
-package syntaxfreaks.pdj.music.Controller;
+package Controller;
 
-
+import Database.DAO;
+import Session.SessionUtil;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import syntaxfreaks.pdj.music.Database.DAO;
-import syntaxfreaks.pdj.music.Session.SessionUtil;
-import syntaxfreaks.pdj.music.model.User;
+import model.User;
 
 
 @Named(value="loginBean")

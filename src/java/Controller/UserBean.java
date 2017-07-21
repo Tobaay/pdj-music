@@ -1,11 +1,11 @@
-package syntaxfreaks.pdj.music.Controller;
+package Controller;
 
+import Session.SessionUtil;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import syntaxfreaks.pdj.music.Session.SessionUtil;
-import syntaxfreaks.pdj.music.model.User;
+import model.User;
 
 @Named
 @SessionScoped

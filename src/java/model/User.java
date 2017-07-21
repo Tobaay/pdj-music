@@ -1,4 +1,4 @@
-package syntaxfreaks.pdj.music.model;
+package model;
 // Generated 16.07.2017 13:55:38 by Hibernate Tools 4.3.1
 
 

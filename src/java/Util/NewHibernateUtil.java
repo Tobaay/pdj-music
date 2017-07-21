@@ -1,4 +1,4 @@
-package syntaxfreaks.pdj.music.Util;
+package util;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;

@@ -1,4 +1,4 @@
-package syntaxfreaks.pdj.music.Session;
+package Session;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;

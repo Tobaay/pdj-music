@@ -2,7 +2,7 @@
 #top {
     position: relative;
     background-color: #036fab;
-    color: black;
+    color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }
@@ -47,7 +47,7 @@
 }
 
 #top a:link, #top a:visited {
-  color: black;
+  color: white;
   font-weight : bold;
   text-decoration: none;
 }
@@ -56,14 +56,6 @@
   color: black;
   font-weight : bold;
   text-decoration : underline;
-}
-
-#menu {
-    background-color: #036fab;
-}
-
-.ui-menuitem {
-        color: black;
 }
 
 

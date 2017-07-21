@@ -1,4 +1,4 @@
-package syntaxfreaks.pdj.music.Filters;
+package filters;
 
 import java.io.IOException;
 import javax.servlet.Filter;

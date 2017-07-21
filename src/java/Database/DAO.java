@@ -1,8 +1,7 @@
 
-package syntaxfreaks.pdj.music.Database;
+package Database;
 
-import syntaxfreaks.pdj.music.model.User;
-
+import model.User;
 
 public interface DAO {
     public User login(String username, String password);
