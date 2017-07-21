@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import model.User;
+import org.primefaces.context.RequestContext;
 
 
 @Named(value="loginBean")
@@ -47,16 +48,21 @@ public class LoginBean {
     
     public String login() {
         User result = dao.login(username, password);
+        FacesContext context = FacesContext.getCurrentInstance();
         
         if (result != null) {
             // get Http Session and store username
             HttpSession session = SessionUtil.getSession();
             session.setAttribute("username", username);
             userBean.setUser(result);
- 
-            return "home";
+            
+            context.addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Willkommen "+result.getUserName(),
+                    "Dies ist die Entwicklungsumgebung!"));
+                    
         } else {
- 
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
@@ -64,10 +70,10 @@ public class LoginBean {
                     "Please Try Again!"));
  
             // invalidate session, and redirect to other pages
- 
             //message = "Invalid Login. Please Try Again!";
-            return "template";
         }
+        RequestContext.getCurrentInstance().addCallbackParam("loggedIn", result!=null);
+        return "index.xhtml";
     }
  
     public String logout() {
