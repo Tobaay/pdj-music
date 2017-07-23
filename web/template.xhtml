@@ -21,9 +21,10 @@
                         <h:outputText value="Not logged in"
                                       rendered="#{!userBean.loggedIn}" />
 
-                        <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+                        <p:growl id="growl" sticky="false" showDetail="true" life="3000" />
 
                         <p:menubar autoDisplay="false" id="menu" style="margin-top:20px">
+
                             <p:menuitem value="Home" 
                                         url="index.xhtml" 
                                         icon="fa fa-home" />
@@ -34,8 +35,21 @@
                                         icon="fa fa-cog"/>
 
                             <f:facet name="options">
-                                <p:commandButton id="loginButton" type="button" value="loginButton" icon="ui-icon-extlink" />
-                                <p:overlayPanel widgetVar="dlg" id="loginPanel" for="loginButton">
+                                
+                                <p:commandButton rendered="#{!userBean.loggedIn}" 
+                                                 id="loginButton" 
+                                                 type="button" 
+                                                 value="Login" 
+                                                 icon="ui-icon-extlink" />
+                                
+                                <p:commandButton rendered="#{userBean.loggedIn}"
+                                                 action="#{userBean.logout()}"
+                                                 id="logoutButton"
+                                                 value="Logout" 
+                                                 icon="ui-icon-extlink"
+                                                 ajax="false"/>
+                                
+                                <p:overlayPanel showEffect="slide" widgetVar="dlg" id="loginPanel" for="loginButton">
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel for="username" value="Username:" />
                                         <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" /> 
@@ -50,12 +64,7 @@
 
                             </f:facet>
 
-                            <p:menuitem id="logout"
-                                        value="Logout" 
-                                        onclick="#{userBean.logout()}" 
-                                        rendered="#{userBean.loggedIn}"
-                                        icon="fa fa-sign-out"
-                                        url="index.xhtml"/>
+                          
                         </p:menubar>
 
                     </h:form>
@@ -65,11 +74,14 @@
                                 PF('dlg').jq.effect("shake", {times: 5}, 100);
                             } else {
                                 PF('dlg').hide();
-
                                 $('#loginLink').fadeOut();
                             }
                         }
                     </script>
+                </ui:insert>
+                
+                <ui:insert name="content">
+                    
                 </ui:insert>
             </div>
         </div>

@@ -47,7 +47,7 @@
 }
 
 #top a:link, #top a:visited {
-  color: white;
+  color: black;
   font-weight : bold;
   text-decoration: none;
 }
@@ -56,6 +56,14 @@
   color: black;
   font-weight : bold;
   text-decoration : underline;
+}
+
+#menu {
+    background-color: #036fab;
+}
+
+.ui-menuitem {
+        color: black;
 }
 
 

@@ -15,13 +15,16 @@
 
         <h:body>
 
-          <ui:composition template="./template.xhtml">
-           
-            <ui:define name="content">
-              <h2>Herzlich Willkommen auf der Startseite!</h2>
-            </ui:define>
+            <ui:composition template="./template.xhtml">
 
-        </ui:composition>
+                <div id="content">
+                    <ui:define name="content">
+                        <h:outputText rendered="#{!userBean.loggedIn}" value="Herzlich Willkommen auf der Startseite!"/>
+                        <h:outputText rendered="#{userBean.loggedIn}" value="Herzlich Willkommen #{userBean.user.userName}"/>
+                    </ui:define>
+                </div>
+
+            </ui:composition>
 
         </h:body>
 

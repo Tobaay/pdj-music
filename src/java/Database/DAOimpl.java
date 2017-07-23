@@ -1,13 +1,30 @@
 package Database;
 
+import Controller.LoginBean;
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import model.User;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
 
 @Dependent
-public class DAOimpl implements DAO {
+public class DAOimpl implements DAO, Serializable {
+
+    public DAOimpl() {
+    }
+
+    @PostConstruct
+    public static void init() {
+        try {
+            Class.forName("util.NewHibernateUtil");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public User login(String username, String password) {
