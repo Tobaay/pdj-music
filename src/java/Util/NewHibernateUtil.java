@@ -1,4 +1,4 @@
-package util;
+package Util;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -17,7 +17,7 @@ public class NewHibernateUtil {
             Configuration configuration = new Configuration().configure();
             serviceRegistry
                     = new StandardServiceRegistryBuilder()
-                    .applySettings(configuration.getProperties()).build();
+                            .applySettings(configuration.getProperties()).build();
 
             // builds a session factory from the service registry
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -27,7 +27,7 @@ public class NewHibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
-    
+
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

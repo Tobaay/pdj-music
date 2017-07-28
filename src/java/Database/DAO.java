@@ -4,5 +4,5 @@ package Database;
 import model.User;
 
 public interface DAO {
-    public User login(String username, String password);
+    public User getUser(String username, String password);
 }
