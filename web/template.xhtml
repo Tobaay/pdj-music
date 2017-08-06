@@ -16,10 +16,10 @@
                 <ui:insert name="top">
                     <h:form>
                         <h1>PDJ-PROJECT-DEVELOPMENT ENVIRONMENT</h1>
-                        <h:outputText value="Logged in as #{userBean.user.userMail}"
-                                      rendered="#{userBean.loggedIn}" />
+                        <h:outputText value="Logged in as #{userController.user.userMail}"
+                                      rendered="#{userController.loggedIn}" />
                         <h:outputText value="Not logged in"
-                                      rendered="#{!userBean.loggedIn}" />
+                                      rendered="#{!userController.loggedIn}" />
 
                         <p:growl id="growl" sticky="false" showDetail="true" life="3000" />
 
@@ -31,19 +31,19 @@
 
                             <p:menuitem value="Settings" 
                                         action="usersettings" 
-                                        rendered="#{userBean.loggedIn}"
+                                        rendered="#{userController.loggedIn}"
                                         icon="fa fa-cog"/>
 
                             <f:facet name="options">
                                 
-                                <p:commandButton rendered="#{!userBean.loggedIn}" 
+                                <p:commandButton rendered="#{!userController.loggedIn}" 
                                                  id="loginButton" 
                                                  type="button" 
                                                  value="Login" 
                                                  icon="ui-icon-extlink" />
                                 
-                                <p:commandButton rendered="#{userBean.loggedIn}"
-                                                 action="#{userBean.logout()}"
+                                <p:commandButton rendered="#{userController.loggedIn}"
+                                                 action="#{userController.logout()}"
                                                  id="logoutButton"
                                                  value="Logout" 
                                                  icon="ui-icon-extlink"
@@ -52,12 +52,12 @@
                                 <p:overlayPanel showEffect="slide" widgetVar="dlg" id="loginPanel" for="loginButton">
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel for="username" value="Username:" />
-                                        <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" /> 
+                                        <p:inputText id="username" value="#{loginController.username}" required="true" label="username" /> 
 
                                         <h:outputLabel for="password" value="Password:" />
-                                        <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
+                                        <p:password id="password" value="#{loginController.password}" required="true" label="password" />
 
-                                        <p:commandButton value="Login" update="growl" action="#{loginBean.login()}"
+                                        <p:commandButton value="Login" update="growl" action="#{loginController.login()}"
                                                          oncomplete="handleLoginRequest(xhr, status, args)" ajax="false"/>
                                     </h:panelGrid>
                                 </p:overlayPanel>

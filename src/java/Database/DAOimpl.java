@@ -1,6 +1,6 @@
 package Database;
 
-import Controller.LoginBean;
+import Controller.LoginController;
 import Session.HibernateSession;
 import java.io.Serializable;
 import java.util.List;
@@ -22,7 +22,7 @@ public class DAOimpl implements DAO, Serializable {
         try {
             Class.forName("Util.NewHibernateUtil");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -38,7 +38,7 @@ public class DAOimpl implements DAO, Serializable {
             
             List<User> result = query.list();
 
-            return result.get(0);
+            return result.size() == 1 ? result.get(0) : null;
         }
         
     }

@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class MessageBean implements Serializable{
+public class MessageController implements Serializable{
 
     public void sendFacesMessage(String message, String detail, FacesMessage.Severity severity) {
         FacesContext context = FacesContext.getCurrentInstance();

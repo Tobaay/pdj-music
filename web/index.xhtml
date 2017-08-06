@@ -19,8 +19,8 @@
 
                 <div id="content">
                     <ui:define name="content">
-                        <h:outputText rendered="#{!userBean.loggedIn}" value="Herzlich Willkommen auf der Startseite!"/>
-                        <h:outputText rendered="#{userBean.loggedIn}" value="Herzlich Willkommen #{userBean.user.userName}"/>
+                        <h:outputText rendered="#{!userController.loggedIn}" value="Herzlich Willkommen auf der Startseite!"/>
+                        <h:outputText rendered="#{userController.loggedIn}" value="Herzlich Willkommen #{userController.user.userName}"/>
                     </ui:define>
                 </div>
 

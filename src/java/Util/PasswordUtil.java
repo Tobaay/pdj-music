@@ -1,6 +1,6 @@
 package Util;
 
-import Controller.LoginBean;
+import Controller.LoginController;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +22,7 @@ public class PasswordUtil {
             }
             generatedPassword = sb.toString();
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         }
         return generatedPassword;
     }

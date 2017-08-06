@@ -11,12 +11,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lombok.NoArgsConstructor;
  
 @WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"*.xhtml"})
+@NoArgsConstructor
 public class AuthenticationFilter implements Filter {
-     
-    public AuthenticationFilter() {
-    }
  
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

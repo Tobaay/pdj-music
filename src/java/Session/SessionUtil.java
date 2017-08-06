@@ -1,12 +1,17 @@
 package Session;
 
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class SessionUtil {
+@Named
+@SessionScoped
+public class SessionUtil implements Serializable {
 
-    public static HttpSession getSession() {
+    public HttpSession getSession() {
         HttpSession s = (HttpSession) FacesContext
                 .getCurrentInstance()
                 .getExternalContext()
@@ -17,18 +22,18 @@ public class SessionUtil {
         return s;
     }
 
-    public static HttpServletRequest getRequest() {
+    public HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.
                 getCurrentInstance().
                 getExternalContext().getRequest();
     }
 
-    public static String getUserName() {
+    public String getUserName() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         return session.getAttribute("username").toString();
     }
 
-    public static String getUserId() {
+    public String getUserId() {
         HttpSession session = getSession();
         if (session != null) {
             return (String) session.getAttribute("userid");
