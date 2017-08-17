@@ -35,13 +35,13 @@
                                         icon="fa fa-cog"/>
 
                             <f:facet name="options">
-                                
+
                                 <p:commandButton rendered="#{!userController.loggedIn}" 
                                                  id="loginButton" 
                                                  type="button" 
                                                  value="Login" 
                                                  icon="ui-icon-extlink" />
-                                
+
                                 <p:commandButton rendered="#{userController.loggedIn}"
                                                  action="#{userController.logout()}"
                                                  id="logoutButton"
@@ -52,10 +52,10 @@
                                 <p:overlayPanel showEffect="slide" widgetVar="dlg" id="loginPanel" for="loginButton">
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel for="username" value="Username:" />
-                                        <p:inputText id="username" value="#{loginController.username}" required="true" label="username" /> 
+                                        <p:inputText id="username" value="#{loginController.username}" label="username" /> 
 
                                         <h:outputLabel for="password" value="Password:" />
-                                        <p:password id="password" value="#{loginController.password}" required="true" label="password" />
+                                        <p:password id="password" value="#{loginController.password}" label="password" />
 
                                         <p:commandButton value="Login" update="growl" action="#{loginController.login()}"
                                                          oncomplete="handleLoginRequest(xhr, status, args)" ajax="false"/>
@@ -64,7 +64,7 @@
 
                             </f:facet>
 
-                          
+
                         </p:menubar>
 
                     </h:form>
@@ -79,9 +79,9 @@
                         }
                     </script>
                 </ui:insert>
-                
+
                 <ui:insert name="content">
-                    
+
                 </ui:insert>
             </div>
         </div>
