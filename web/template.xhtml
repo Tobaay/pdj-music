@@ -57,7 +57,7 @@
                                         <h:outputLabel for="password" value="Password:" />
                                         <p:password id="password" value="#{loginController.password}" label="password" />
 
-                                        <p:commandButton value="Login" disabled="" update="growl" action="#{loginController.login()}"
+                                        <p:commandButton value="Login" update="growl" action="#{loginController.login()}"
                                                          oncomplete="handleLoginRequest(xhr, status, args)" ajax="false"/>
                                     </h:panelGrid>
                                 </p:overlayPanel>
