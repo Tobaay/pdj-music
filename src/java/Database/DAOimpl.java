@@ -40,6 +40,33 @@ public class DAOimpl implements DAO, Serializable {
 
             return result.size() == 1 ? result.get(0) : null;
         }
+    }
+    
+    @Override
+    public User getUser(String username) {
         
+        try (HibernateSession session = new HibernateSession(NewHibernateUtil.getSessionFactory().openSession())){
+            
+            String sql = "from User where user_username = :username";
+            org.hibernate.Query query = session.delegate().createQuery(sql);
+            query.setParameter("username", username);
+            
+            List<User> result = query.list();
+            
+            return result.size() == 1 ? result.get(0) : null;
+        }
+    }
+    
+    @Override
+    public void setUser(String username, String password, String email) {
+        
+        try (HibernateSession session = new HibernateSession(NewHibernateUtil.getSessionFactory().openSession())){
+            
+            session.delegate().beginTransaction();
+            User queryUser = new User(username, password, email);
+            session.delegate().persist(queryUser);
+            session.delegate().getTransaction().commit();
+
+        }
     }
 }
