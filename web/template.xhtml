@@ -37,10 +37,10 @@
                             <f:facet name="options">
 
                                 <p:commandButton rendered="#{!userController.loggedIn}"
-                                                 id="registerButton" 
+                                                 id="registrationButton" 
                                                  type="button" 
                                                  value="Register"
-                                                 onclick="PF('registerDialog').show();"
+                                                 onclick="PF('registrationDialog').show();"
                                                  icon="ui-icon-extlink" />
 
                                 <p:commandButton rendered="#{!userController.loggedIn}" 
@@ -56,30 +56,6 @@
                                                  value="Logout" 
                                                  icon="ui-icon-extlink"
                                                  ajax="false"/>
-
-                                <!-- Register Pop-Up Window -->
-                                <p:dialog id="registerDialog" 
-                                          header="Neuen Account erstellen" 
-                                          widgetVar="registerDialog" 
-                                          resizable="false"
-                                          modal="true" 
-                                          draggable="false"
-                                          closeOnEscape="true" 
-                                          showEffect="clip" 
-                                          hideEffect="clip"
-                                          height="200" 
-                                          width="500"> 
-
-                                    <h:outputText value="Registrierung" />
-
-                                    <h:panelGrid columns="2" cellpadding="5">        
-                                        <h:outputLabel for="registerUsername" value="Username:" />
-                                        <p:inputText id="registerUsername" value="#{loginController.username}" label="registerUsername" />
-
-                                        <h:outputLabel for="registerPassword" value="Password:" />
-                                        <p:inputText id="registerPassword" value="#{loginController.password}" label="registerPassword" />
-                                    </h:panelGrid>
-                                </p:dialog>
 
                                 <p:overlayPanel showEffect="slide" widgetVar="dlg" id="loginPanel" for="loginButton">
                                     <h:panelGrid columns="2" cellpadding="5">
@@ -117,6 +93,33 @@
                 </ui:insert>
             </div>
         </div>
+        
+        <!-- Register Pop-Up Window -->
+        <h:form>
+            <p:dialog id="registrationDialog" 
+                      header="Neuen Account erstellen" 
+                      widgetVar="registrationDialog" 
+                      resizable="false"
+                      modal="true" 
+                      draggable="false"
+                      closeOnEscape="true" 
+                      showEffect="clip" 
+                      hideEffect="clip"
+                      height="200" 
+                      width="400"
+                      > 
+
+                <h:outputText value="Registrierung" />
+               
+                <h:panelGrid columns="2" cellpadding="5">        
+                    <h:outputLabel for="registrationUsername" value="Username:" />
+                    <p:inputText id="registrationUsername" value="#{registrationController.username}" label="registrationUsername" />
+
+                    <h:outputLabel for="registrationPassword" value="Password:" />
+                    <p:inputText id="registrationPassword" value="#{registrationController.password}" label="registrationPassword" />
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
     </h:body>
 </html>
 
