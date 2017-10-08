@@ -9,6 +9,19 @@
         <title>PDJ-PROJECT-DEV</title>
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        
+        <script type="text/javascript">
+                    window.onload=function(){
+                        function handleLoginRequest(xhr, status, args) {
+                            if (args.validationFailed || !args.loggedIn) {
+                                PF('dlg').jq.effect("shake", {times: 5}, 100);
+                            } else {
+                                PF('dlg').hide();
+                                $('#loginLink').fadeOut();
+                            }
+                        }
+                    }
+        </script>
     </h:head>
     <h:body>           
         <div id="wrapper">
@@ -36,11 +49,19 @@
 
                             <f:facet name="options">
 
+                                <p:commandButton rendered="#{!userController.loggedIn}"
+                                                 id="registrationButton" 
+                                                 type="button" 
+                                                 value="Registration"
+                                                 onclick="PF('registrationDialog').show();"
+                                                 icon="ui-icon-extlink" />
+
                                 <p:commandButton rendered="#{!userController.loggedIn}" 
                                                  id="loginButton" 
                                                  type="button" 
                                                  value="Login" 
                                                  icon="ui-icon-extlink" />
+
 
                                 <p:commandButton rendered="#{userController.loggedIn}"
                                                  action="#{userController.logout()}"
@@ -48,7 +69,7 @@
                                                  value="Logout" 
                                                  icon="ui-icon-extlink"
                                                  ajax="false"/>
-                                
+
                                 <p:overlayPanel showEffect="slide" widgetVar="dlg" id="loginPanel" for="loginButton">
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel for="username" value="Username:" />
@@ -64,27 +85,54 @@
 
                             </f:facet>
 
-
                         </p:menubar>
 
                     </h:form>
-                    <script type="text/javascript">
-                        function handleLoginRequest(xhr, status, args) {
-                            if (args.validationFailed || !args.loggedIn) {
-                                PF('dlg').jq.effect("shake", {times: 5}, 100);
-                            } else {
-                                PF('dlg').hide();
-                                $('#loginLink').fadeOut();
-                            }
-                        }
-                    </script>
+                    
                 </ui:insert>
 
                 <ui:insert name="content">
 
+
                 </ui:insert>
             </div>
         </div>
+        
+        <!-- Register Pop-Up Window -->
+        <h:form>
+            <p:dialog id="registrationDialog" 
+                      header="Neuen Account erstellen" 
+                      widgetVar="registrationDialog" 
+                      resizable="false"
+                      modal="true" 
+                      draggable="false"
+                      closeOnEscape="true" 
+                      showEffect="clip" 
+                      hideEffect="clip"
+                      height="300" 
+                      width="450"
+                      > 
+
+                <h:outputText value="Registration" />
+               
+                <h:panelGrid columns="2" cellpadding="5">        
+                    <h:outputLabel for="registrationUsername" value="Username:" />
+                    <p:inputText id="registrationUsername" value="#{registrationController.username}" label="registrationUsername" />
+
+                    <h:outputLabel for="registrationPassword" value="Password:" />
+                    <p:password id="registrationPassword" value="#{registrationController.password}" label="registrationPassword" />
+                    
+                    <h:outputLabel for="registrationPasswordValidation" value="Password Validation:" />
+                    <p:password id="registrationPasswordValidation" value="#{registrationController.passwordValidation}" label="registrationPasswordValidation" />
+                    
+                    <h:outputLabel for="registrationEmail" value="e-mail:" />
+                    <p:inputText id="registrationEmail" value="#{registrationController.email}" label="registrationEmail" />
+                    
+                    <p:commandButton value="Registration" update="growl" action="#{registrationController.register()}"
+                                                         oncomplete="handleLoginRequest(xhr, status, args)" ajax="false"/>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
     </h:body>
 </html>
 
